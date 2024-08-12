@@ -1,11 +1,13 @@
 import streamlit as st
 
 st.title("De acordo com a sua região, qual será seu desconto:")
-st.sidebar.header("Me informe algumas coisas:")
-valor = st.sidebar.number_input("Qual o valor da sua compra?")
-codigo = st.sidebar.number_input("Qual é o codigo de origem do produto? (1 - Norte / 2 - Sul / 3 - Sudeste / 4 - Nordeste / 5 - Centro-Oeste)")
-calcular_bottom = st.sidebar.button("Calcular desconto")
-if calcular_bottom:
+nome = st.text_input("Digite seu nome: ")
+
+st.sidebar.header(f"Me informe algumas coisas {nome}:")
+valor = st.sidebar.number_input("Qual o valor da sua compra?", min_value=0.1, format="%.2r")
+codigo = st.sidebar.number_input("Qual é o codigo de origem do produto? (1 - Norte / 2 - Sul / 3 - Sudeste / 4 - Nordeste / 5 - Centro-Oeste)", min_value=1, max_value=5, format="%.2r")
+
+if st.button("calcular desconto"):
   if codigo == 1:
     desconto = valor * 0.05
     st.write(f"O valor da sua compra é: {valor - desconto}")
